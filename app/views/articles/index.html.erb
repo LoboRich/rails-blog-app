@@ -21,6 +21,7 @@
           <th>Title</th>
           <th>Author</th>
           <th>Content</th>
+          <th>Action</th>
         </tr>
       </thead>
 
@@ -30,6 +31,11 @@
             <td><%= x.title %></td>
             <td><%= x.author %></td>
             <td><%= x.content %></td>
+            <td>
+              <%= link_to 'Show'%>
+              <%= link_to 'Edit', edit_article_path(x)%>
+              <%= link_to 'Delete'%>
+            </td>
           </tr>
         <% end %>
       </tbody>
