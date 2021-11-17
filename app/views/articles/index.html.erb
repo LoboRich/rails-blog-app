@@ -11,11 +11,9 @@
     </style>
   </head>
   <body>
-    <p id="notice"><%= notice %></p>
-
     <h1>Articles</h1>
     <button><%= link_to 'New Article', "/articles/new" %></button><br><br>
-    
+
     <table>
       <thead>
         <tr>
@@ -35,7 +33,7 @@
             <td>
               <%= link_to 'Show', x%>
               <%= link_to 'Edit', edit_article_path(x)%>
-              <%= link_to 'Delete'%>
+              <%= link_to 'Delete', x, method: :delete, data: {confirm: "Are you sure"}%>
             </td>
           </tr>
         <% end %>
