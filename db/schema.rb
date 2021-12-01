@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2021_11_25_115311) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.boolean "toxic", default: false
     t.integer "article_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -10,6 +10,8 @@ class ArticlesController < ApplicationController
 	end
 
 	def show
+		@comments = @article.comments.where.not(id: nil)
+		@comment = @article.comments.build
 	end
 
 	def create
