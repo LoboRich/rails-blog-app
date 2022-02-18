@@ -1,2 +1,8 @@
-%h1 Edit Comment
-= render 'form'
+.flex.flex-col.items-center.w-full
+  %h1.text-2xl.font-bold.text-my-blue.px-6.md:px-0.mt-6 Edit Comment
+  .w-full.p-5.md:px-12.lg:24.h-full.antialiased{:class => "md:w-2/4 lg:w-3/5"}
+    .mt-3.flex.flex-col
+      = render 'form'
+      
+      .w-full.flex.flex-row.flex-wrap.mt-3
+        = link_to 'Back', articles_path, :class => "float-right flex-shrink-0 bg-blue-300 hover:bg-blue-300 hover:opacity-75 transition-opacity duration-200 text-sm text-white py-1 px-2 rounded", :style => "color: white"

@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
 
 	def update
 		if @comment.update(comment_params)
-			redirect_to @article, notice: "A comment was successfully updated."
+			redirect_to articles_path, notice: "A comment was successfully updated."
 		else
 			flash[:error] = "Some errors encountered"
 			render :edit
@@ -50,7 +50,7 @@ class CommentsController < ApplicationController
 
 	def destroy
 		@comment.destroy
-		redirect_to @article, notice: "Comment was successfully deleted."
+		redirect_to articles_path, notice: "Comment was successfully deleted."
 	end
 
 	private
