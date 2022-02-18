@@ -5,18 +5,17 @@ class Article < ApplicationRecord
 	 has_and_belongs_to_many :categories
 
 
-	 before_validation :set_content, if: :content_is_empty?
-	 after_create :create_comment
+	#  before_validation :set_content, if: :content_is_empty?
 
-	 def set_content
-	 	self.content = 'Default Content'
-	 end
+	#  def set_content
+	#  	self.content = 'Default Content'
+	#  end
 
-	 def content_is_empty?
-	 	self.content.blank? .nil?
-	 end
+	#  def content_is_empty?
+	#  	self.content.blank? .nil?
+	#  end
 
-	 def create_comment
-		Comment.create(content: "Yows", article: self)
-	 end
+	#  def create_comment
+	# 	Comment.create(content: "Yows", article: self)
+	#  end
 end
