@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :categories
   end
 
+  post 'create_2', to: 'comments#create2'
   resources :categories do
     resources :articles
   end 

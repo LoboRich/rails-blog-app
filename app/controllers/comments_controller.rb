@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-	before_action :set_article
+	before_action :set_article, except: [:create2]
 	before_action :set_comment, only: [:edit, :update, :destroy]
 	def index
 		@comments = Comment.all
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
 	def create
 		@comment = @article.comments.build(comment_params)
-
+		
 		if @comment.save
 			redirect_to @article, notice: "Comment was successfully created."
 		else
@@ -22,6 +22,17 @@ class CommentsController < ApplicationController
 			render "articles/show"
 		end
 	end
+
+	def create2
+		@comment = Comment.new(comment_params)
+		respond_to do |format|
+		  if @comment.save
+			format.html { redirect_to articles_path, notice: "Comment was successfully created." }
+		  else
+			format.html { redirect_to articles_path, notice: "Comment was not created." }
+		  end
+		end
+	  end
 
 	def edit
 		@comment = Comment.find(params[:id])
@@ -53,6 +64,6 @@ class CommentsController < ApplicationController
 	end
 
 	def comment_params
-		params.require(:comment).permit(:content)
+		params.require(:comment).permit(:content, :article_id)
 	end
 end

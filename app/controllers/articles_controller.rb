@@ -2,11 +2,13 @@ class ArticlesController < ApplicationController
 	before_action :set_article, only: %i[ show edit update destroy ]
 
 	def index
-		@articles = Article.all
+		@articles = Article.all.order("created_at DESC")
+		@article = Article.new
+		@comment = Comment.new
 	end
 
 	def new
-		@article = Article.new
+		
 	end
 
 	def show
@@ -47,7 +49,12 @@ class ArticlesController < ApplicationController
 	private
 
 	def set_article
-		@article = Article.find(params[:id])
+		begin
+			@article = Article.find(params[:id])
+		rescue ActiveRecord::RecordNotFound => e
+			flash[:error] = e
+			redirect_to new_article_path
+		end
 	end
 
 	def article_params

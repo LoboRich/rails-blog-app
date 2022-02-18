@@ -1,14 +1,30 @@
-= form_with(model: [@article, @comment], local: true) do |form|
-  - if @comment.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@comment.errors.count, "error")
-        prohibited this @comment from being saved:
-      %ul
-        - @comment.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = form.label :content
-    = form.text_area :content
-  .actions
-    = form.submit
+-#  = form_with(model: [@article, @comment], local: true) do |form|
+-#    - if @comment.errors.any?
+-#      -# error_explanation
+-#        %h2
+-#          = pluralize(@comment.errors.count, "error")
+-#          prohibited this @comment from being saved:
+-#        %ul
+-#          - @comment.errors.full_messages.each do |message|
+-#            %li= message
+-#    .field
+-#      = form.hidden_field :content
+-#      = form.text_area :content
+-#    .actions
+-#      = form.submit
+.w-full
+  = form_with scope: :comment, url: create_2_path do |form|
+    - if @comment.errors.any?
+      -# error_explanation
+        %h2
+          = pluralize(@comment.errors.count, "error")
+          prohibited this @comment from being saved:
+        %ul
+          - @comment.errors.full_messages.each do |message|
+            %li= message
+    .flex.items-center.border-b.border-teal-500.py-2.w-full
+      = form.hidden_field :article_id, value: info.id
+      = form.text_area :content, :class => "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none", :placeholder => "Write a comment"
+      = form.submit 'Comment', :class => "flex-shrink-0 bg-my-blue hover:bg-my-blue hover:opacity-75 transition-opacity duration-200 text-sm text-white py-1 px-2 rounded"
+
+      
