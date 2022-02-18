@@ -11,7 +11,14 @@
     %link{href: "https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.2/tailwind.min.css", rel: "stylesheet"}/
     %script{src: "https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"}
     %script{src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"}
-  %body
-    = flash[:notice]
-    = flash[:error]
-    = yield
+    %link{href: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css", rel: "stylesheet"}/
+    %script{src: "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"}
+  %body.w-screen.h-screen
+    %div
+      = yield
+      - if flash.any?
+        %script(type="text/javascript")
+          - flash.each do |key, value|
+            - type = key.to_s.gsub('alert', 'error').gsub('notice', 'success');
+            toastr.#{type}('#{value}')
+

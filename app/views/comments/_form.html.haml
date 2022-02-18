@@ -22,9 +22,9 @@
         %ul
           - @comment.errors.full_messages.each do |message|
             %li= message
-    .flex.items-center.border-b.border-teal-500.py-2.w-full
+    .flex.items-center.border-b.border-blue-500.py-2.w-full
       = form.hidden_field :article_id, value: info.id
       = form.text_area :content, :class => "appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none", :placeholder => "Write a comment"
-      = form.submit 'Comment', :class => "flex-shrink-0 bg-my-blue hover:bg-my-blue hover:opacity-75 transition-opacity duration-200 text-sm text-white py-1 px-2 rounded"
+      = form.submit 'Comment', :class => "flex-shrink-0 bg-blue-500 hover:bg-my-blue hover:opacity-75 transition-opacity duration-200 text-sm text-white py-1 px-2 rounded"
 
       
